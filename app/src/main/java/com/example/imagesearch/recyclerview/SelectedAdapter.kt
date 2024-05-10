@@ -36,7 +36,6 @@ class SelectedAdapter(): RecyclerView.Adapter<SelectedAdapter.SelectedHolder>() 
         holder.itemView.setOnClickListener {
             items.removeAt(position)
             notifyItemRemoved(position)
-            notifyItemRangeRemoved(position, itemCount - position)
             itemClick?.onClick(position)
             holder.heart.visibility = View.INVISIBLE
         }
