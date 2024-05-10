@@ -71,13 +71,17 @@ class SearchImage : Fragment() {
             binding.recyclerview.layoutManager = GridLayoutManager(context as Activity, 2)
 
             adapter.itemClick = object : MyAdapter.ItemClick {
-                override fun onClick(view: View, position: Int) {
+                override fun onClick(holder: MyAdapter.Holder, position: Int) {
                     selectedImageList.add(list[position])
-                    Log.d("adapterItem", "${list[position]}")
                 }
             }
         }
         btnClick()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        binding.recyclerview.adapter = adapter
     }
 
 

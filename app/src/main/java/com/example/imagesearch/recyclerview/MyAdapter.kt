@@ -15,9 +15,14 @@ class MyAdapter : RecyclerView.Adapter<MyAdapter.Holder>() {
     var items = mutableListOf<Documents>()
 
     interface ItemClick {
-        fun onClick(view: View, position: Int)
+        fun onClick(holder: Holder, position: Int)
     }
     var itemClick: ItemClick? = null
+
+    interface Invisible {
+        fun invisible(holder: Holder, position: Int)
+    }
+    var invisible: Invisible? = null
 
     class Holder(private val binding: RecyclerviewBinding) : RecyclerView.ViewHolder(binding.root) {
         val image = binding.imageView
@@ -42,24 +47,25 @@ class MyAdapter : RecyclerView.Adapter<MyAdapter.Holder>() {
             date.text = DateFormat.dateToStirng(getItem.datetime)
             site.text = getItem.display_sitename
 
+            // 예전에 누른 하트 찾기
             if (selectedImageList.contains(items[position])){
                 holder.heart.visibility = View.VISIBLE
+            } else {
+                holder.heart.visibility = View.INVISIBLE
             }
 
+            // 아이템 클릭시 하트 생성 및 보관함 추가
             itemView.setOnClickListener {
                 if (selectedImageList.contains(items[position])) {
                     selectedImageList.removeAt(selectedImageList.indexOf(items[position]))
                     heart.visibility = View.INVISIBLE
 
                 } else {
-                    itemClick?.onClick(it, position)
+                    itemClick?.onClick(holder, position)
                     heart.visibility = View.VISIBLE
                 }
             }
         }
-
-
-
     }
 
     override fun getItemCount(): Int {

@@ -16,6 +16,7 @@ import com.example.imagesearch.databinding.FragmentMyItemBinding
 import com.example.imagesearch.presentation.MainActivity.SelectedImageList.selectedImageList
 import com.example.imagesearch.presentation.SearchViewModel
 import com.example.imagesearch.presentation.SearchViewModelFactory
+import com.example.imagesearch.recyclerview.MyAdapter
 import com.example.imagesearch.recyclerview.SelectedAdapter
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -46,7 +47,6 @@ class MyItem : Fragment() {
         adapter.items = selectedImageList
         binding.myitemRv.adapter = adapter
         binding.myitemRv.layoutManager = GridLayoutManager(context as Activity, 2)
-
 
     }
 
