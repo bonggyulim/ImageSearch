@@ -73,11 +73,10 @@ class SearchImage : Fragment() {
             adapter.itemClick = object : MyAdapter.ItemClick {
                 override fun onClick(view: View, position: Int) {
                     selectedImageList.add(list[position])
+                    Log.d("adapterItem", "${list[position]}")
                 }
             }
-
         }
-
         btnClick()
     }
 
@@ -93,7 +92,7 @@ class SearchImage : Fragment() {
     }
 
 
-    private fun communicateNetWork(query: String) = lifecycleScope.launch() {
+    private fun communicateNetWork(query: String) {
         searchViewModel.getDataList(query)
     }
 
